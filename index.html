@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biología General - Resumen final + simulacro completo</title>
+  <style>
+    :root{
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --accent:#0f766e;
+      --accent2:#2563eb;
+      --warn:#b45309;
+      --danger:#b91c1c;
+      --ok:#166534;
+      --border:#dbe3ee;
+      --shadow:0 8px 24px rgba(15,23,42,.08);
+      --okbg:#f0fdf4;
+      --badbg:#fff5f5;
+      --yellow:#fff3a3;
+      --redsoft:#ffe5e5;
+      --greensoft:#e7f9ed;
+      --bluesoft:#eef6ff;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    header{
+      background:linear-gradient(135deg,#0f766e,#2563eb);
+      color:#fff;
+      padding:30px 18px;
+      position:sticky;
+      top:0;
+      z-index:10;
+      box-shadow:var(--shadow);
+    }
+    header h1{margin:0 0 8px;font-size:28px}
+    header p{margin:0;max-width:980px}
+    nav{
+      background:#edf4ff;
+      border-bottom:1px solid var(--border);
+      padding:12px 16px;
+      position:sticky;
+      top:110px;
+      z-index:9;
+    }
+    nav a{
+      display:inline-block;
+      margin:6px 8px 6px 0;
+      padding:8px 12px;
+      text-decoration:none;
+      color:#0f172a;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:999px;
+      font-size:14px;
+    }
+    main{
+      max-width:1160px;
+      margin:24px auto 70px;
+      padding:0 16px;
+    }
+    section{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      margin-bottom:20px;
+      overflow:hidden;
+    }
+    details{border-top:1px solid var(--border)}
+    details:first-of-type{border-top:none}
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:18px 22px;
+      font-weight:700;
+      background:#fbfdff;
+    }
+    summary::-webkit-details-marker{display:none}
+    details[open] summary{
+      background:#f7fbff;
+      border-bottom:1px solid var(--border);
+    }
+    .content{padding:18px 22px 26px}
+    .pill{
+      display:inline-block;
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:12px;
+      margin:0 6px 8px 0;
+      background:#e6fffb;
+      color:#115e59;
+      border:1px solid #b9f5ee;
+    }
+    .box{
+      border-left:5px solid var(--accent2);
+      background:#f8fbff;
+      padding:14px 16px;
+      margin:14px 0;
+      border-radius:10px;
+    }
+    .box.warn{border-left-color:var(--warn);background:#fffaf0}
+    .box.danger{border-left-color:var(--danger);background:#fff5f5}
+    .box.ok{border-left-color:var(--ok);background:#f0fdf4}
+    .yellow{background:var(--yellow);padding:2px 6px;border-radius:6px}
+    .redflag{background:var(--redsoft);padding:2px 6px;border-radius:6px}
+    .greenflag{background:var(--greensoft);padding:2px 6px;border-radius:6px}
+    .blueflag{background:var(--bluesoft);padding:2px 6px;border-radius:6px}
+    h2,h3,h4{margin-top:0}
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin:14px 0;
+      background:#fff;
+    }
+    th,td{
+      border:1px solid var(--border);
+      padding:10px 12px;
+      text-align:left;
+      vertical-align:top;
+    }
+    th{background:#eff6ff}
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+    .mini{font-size:14px;color:var(--muted)}
+
+    .quiz-controls{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:14px 0 20px;
+    }
+    .btn{
+      border:none;
+      border-radius:10px;
+      padding:12px 16px;
+      font-weight:700;
+      cursor:pointer;
+      box-shadow:var(--shadow);
+    }
+    .btn-primary{background:#2563eb;color:#fff}
+    .btn-secondary{background:#e5eefc;color:#0f172a}
+
+    .score-box{
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:#f8fbff;
+      padding:16px;
+      margin:16px 0 20px;
+    }
+    .score-number{
+      font-size:28px;
+      font-weight:700;
+      color:#0f766e;
+    }
+    .question{
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:16px;
+      margin:16px 0;
+      background:#fff;
+    }
+    .question.correct{
+      background:var(--okbg);
+      border-color:#86efac;
+    }
+    .question.incorrect{
+      background:var(--badbg);
+      border-color:#fca5a5;
+    }
+    .q-title{
+      font-weight:700;
+      margin-bottom:10px;
+    }
+    .options label{
+      display:block;
+      padding:8px 10px;
+      border-radius:10px;
+      margin:6px 0;
+      cursor:pointer;
+      border:1px solid transparent;
+    }
+    .options label:hover{
+      background:#f8fafc;
+      border-color:#dbeafe;
+    }
+    .feedback{
+      margin-top:12px;
+      padding:10px 12px;
+      border-radius:10px;
+      display:none;
+    }
+    .feedback.show{display:block}
+    .feedback.ok{
+      background:#dcfce7;
+      color:#166534;
+      border:1px solid #86efac;
+    }
+    .feedback.bad{
+      background:#fee2e2;
+      color:#991b1b;
+      border:1px solid #fca5a5;
+    }
+    .short-input{
+      width:100%;
+      padding:10px 12px;
+      border:1px solid var(--border);
+      border-radius:10px;
+      font-size:15px;
+      margin-top:8px;
+    }
+    .assoc-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin:10px 0;
+      align-items:center;
+    }
+    .assoc-row select{
+      padding:10px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background:#fff;
+    }
+
+    @media (max-width:820px){
+      nav{top:126px}
+      .two-col,.assoc-row{grid-template-columns:1fr}
+      header h1{font-size:24px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Biología General - versión final ordenada + simulacro tipo examen</h1>
+    <p>
+      Este material está ordenado según la secuencia real de los temas y deja reproducción celular al final, como último tema visto. Incluye ideas clave, confusiones comunes y práctica parecida al examen.
+    </p>
+  </header>
+
+  <nav>
+    <a href="#uso">Uso</a>
+    <a href="#tema1">1. Introducción</a>
+    <a href="#tema2">2. Química</a>
+    <a href="#tema3">3. Célula</a>
+    <a href="#tema4">4. Metabolismo</a>
+    <a href="#tema5">5. Fotosíntesis y respiración</a>
+    <a href="#tema6">6. Reproducción celular</a>
+    <a href="#repaso">Repaso final</a>
+    <a href="#simulacro">Simulacro</a>
+  </nav>
+
+  <main>
+
+    <section id="uso">
+      <div class="content">
+        <h2>Cómo usar este material</h2>
+        <span class="pill">Amarillo = idea clave</span>
+        <span class="pill">Rojo = lo que confunde</span>
+        <span class="pill">Verde = respuesta exacta</span>
+        <span class="pill">Orden real de la materia</span>
+        <p>
+          El orden de este resumen sigue mejor la secuencia de tus clases: introducción, química, célula, metabolismo, fotosíntesis/respiración y al final reproducción celular. Esto ayuda porque el último tema visto fue mitosis y meiosis, y así queda donde corresponde y con más práctica. 
+        </p>
+        <div class="box ok">
+          <strong>Cómo estudiar:</strong> primero lee cada tema, luego memoriza las frases en verde, después revisa las alertas rojas y al final resuelve el simulacro completo.
+        </div>
+      </div>
+    </section>
+
+    <section id="tema1">
+      <details open>
+        <summary>1. Introducción a la biología y método científico</summary>
+        <div class="content">
+          <h3>Conceptos básicos</h3>
+          <ul>
+            <li><span class="greenflag">La unidad más pequeña de vida es la célula.</span></li>
+            <li><span class="greenflag">Homeostasis</span>: mantenimiento de condiciones internas estables.</li>
+            <li><span class="greenflag">Metabolismo</span>: suma de todas las reacciones químicas de la célula.</li>
+            <li>Los seres vivos están compuestos por células, responden al ambiente, mantienen homeostasis, obtienen energía, crecen, se reproducen y evolucionan.</li>
+          </ul>
+
+          <h3>Método científico</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Término</th>
+                <th>Qué significa</th>
+                <th>Ejemplo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Observación</td>
+                <td>Notar un hecho o fenómeno</td>
+                <td>Las personas contraen cáncer</td>
+              </tr>
+              <tr>
+                <td>Pregunta</td>
+                <td>Interrogante derivada de la observación</td>
+                <td>¿Por qué contraen cáncer?</td>
+              </tr>
+              <tr>
+                <td>Hipótesis</td>
+                <td>Explicación tentativa y comprobable</td>
+                <td>Fumar puede causar cáncer</td>
+              </tr>
+              <tr>
+                <td>Predicción</td>
+                <td>Resultado esperado si la hipótesis es correcta</td>
+                <td>Los fumadores presentarán más cáncer</td>
+              </tr>
+              <tr>
+                <td>Experimento</td>
+                <td>Prueba o recolección de datos</td>
+                <td>Comparar grupos fumadores y no fumadores</td>
+              </tr>
+              <tr>
+                <td>Conclusión</td>
+                <td>Interpretación final basada en evidencia</td>
+                <td>Los resultados apoyan o no la hipótesis</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="box">
+            <strong>Clave de examen:</strong> <span class="yellow">después de formular hipótesis y predicción, sigue el experimento o la recolección de datos.</span>
+          </div>
+
+          <div class="box warn">
+            <strong>Variables:</strong> la variable independiente es la causa que manipula el investigador; la dependiente es el efecto que se mide.
+          </div>
+
+          <div class="box danger">
+            <strong>No confundas:</strong> <span class="redflag">teoría científica</span> no significa adivinanza; es una explicación amplia sustentada por muchas observaciones y pruebas.
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section id="tema2">
+      <details>
+        <summary>2. Química biológica, agua y biomoléculas</summary>
+        <div class="content">
+          <h3>Enlaces químicos</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Qué ocurre</th>
+                <th>Ejemplo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Iónico</td>
+                <td>Un átomo cede electrones y otro los gana</td>
+                <td>NaCl</td>
+              </tr>
+              <tr>
+                <td>Covalente no polar</td>
+                <td>Electrones compartidos de forma más equitativa</td>
+                <td>Enlaces C-H</td>
+              </tr>
+              <tr>
+                <td>Covalente polar</td>
+                <td>Electrones compartidos de forma desigual</td>
+                <td>O-H en agua</td>
+              </tr>
+              <tr>
+                <td>Puente de hidrógeno</td>
+                <td>Atracción entre moléculas o regiones polares</td>
+                <td>Entre moléculas de agua</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Agua</h3>
+          <ul>
+            <li><span class="greenflag">El agua es una molécula polar.</span></li>
+            <li><span class="yellow">La mayoría de las propiedades del agua se deben a puentes de hidrógeno.</span></li>
+            <li>Cohesión: las moléculas de agua se atraen entre sí.</li>
+            <li>Adhesión: el agua se pega a superficies polares.</li>
+            <li>Tensión superficial: resultado de la cohesión.</li>
+            <li>El agua es buen solvente para sustancias polares e iónicas.</li>
+            <li><span class="greenflag">El pH indica la concentración de iones hidrógeno.</span></li>
+          </ul>
+
+          <h3>Biomoléculas</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Biomolécula</th>
+                <th>Unidad básica</th>
+                <th>Función</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Carbohidratos</td>
+                <td>Monosacáridos</td>
+                <td>Energía rápida y estructura</td>
+              </tr>
+              <tr>
+                <td>Lípidos</td>
+                <td>Ácidos grasos y glicerol</td>
+                <td>Reserva, membranas, hormonas</td>
+              </tr>
+              <tr>
+                <td>Proteínas</td>
+                <td>Aminoácidos</td>
+                <td>Enzimas, estructura, transporte</td>
+              </tr>
+              <tr>
+                <td>Ácidos nucleicos</td>
+                <td>Nucleótidos</td>
+                <td>Información genética</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <ul>
+            <li><span class="greenflag">La ribosa es un monosacárido.</span></li>
+            <li><span class="greenflag">Los aminoácidos forman proteínas.</span></li>
+            <li><span class="greenflag">Un nucleótido = azúcar + fosfato + base nitrogenada.</span></li>
+            <li><span class="greenflag">Los lípidos tienen regiones extensas de carbono e hidrógeno con enlaces no polares.</span></li>
+          </ul>
+
+          <div class="box danger">
+            <strong>Confusión típica:</strong> <span class="redflag">puente de hidrógeno</span> no es lo mismo que <span class="redflag">enlace covalente polar</span>.
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section id="tema3">
+      <details>
+        <summary>3. Célula, organelos, membrana y transporte</summary>
+        <div class="content">
+          <h3>Teoría celular y tipos de célula</h3>
+          <ul>
+            <li>Todos los organismos están formados por una o más células.</li>
+            <li>Todas las células provienen de células preexistentes.</li>
+            <li>Las células son unidades funcionales de los seres vivos.</li>
+          </ul>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Característica</th>
+                <th>Procariotas</th>
+                <th>Eucariotas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Núcleo</td>
+                <td>No definido</td>
+                <td>Definido</td>
+              </tr>
+              <tr>
+                <td>Organelos membranosos</td>
+                <td>No</td>
+                <td>Sí</td>
+              </tr>
+              <tr>
+                <td>ADN</td>
+                <td>Generalmente circular</td>
+                <td>Lineal</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Organelos importantes</h3>
+          <ul>
+            <li><span class="greenflag">Ribosomas:</span> ARN y proteínas; síntesis de proteínas.</li>
+            <li><span class="greenflag">Mitocondria:</span> respiración celular y ATP.</li>
+            <li><span class="greenflag">Cloroplasto:</span> fotosíntesis.</li>
+            <li><span class="greenflag">Golgi:</span> modifica, clasifica y empaca proteínas.</li>
+            <li><span class="greenflag">Lisosoma:</span> digestión celular.</li>
+            <li><span class="greenflag">Citoesqueleto:</span> forma, movimiento de organelos y división celular.</li>
+          </ul>
+
+          <h3>Membrana plasmática</h3>
+          <ul>
+            <li><span class="yellow">Está formada principalmente por fosfolípidos y proteínas.</span></li>
+            <li>Es una bicapa con permeabilidad selectiva.</li>
+            <li>Funciona como barrera, permite intercambio y comunicación celular.</li>
+          </ul>
+
+          <h3>Transporte</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Usa energía</th>
+                <th>Clave</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Difusión simple</td>
+                <td>No</td>
+                <td>A favor del gradiente</td>
+              </tr>
+              <tr>
+                <td>Difusión facilitada</td>
+                <td>No</td>
+                <td>Usa proteínas de membrana</td>
+              </tr>
+              <tr>
+                <td>Ósmosis</td>
+                <td>No</td>
+                <td>Movimiento de agua</td>
+              </tr>
+              <tr>
+                <td>Transporte activo</td>
+                <td>Sí</td>
+                <td>Contra gradiente</td>
+              </tr>
+              <tr>
+                <td>Endocitosis y exocitosis</td>
+                <td>Sí</td>
+                <td>Tráfico por vesículas</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Ósmosis, tonicidad y plasmólisis</h3>
+          <ul>
+            <li>El agua se mueve hacia la región con más soluto y menos agua libre.</li>
+            <li>Medio hipotónico: entra agua a la célula.</li>
+            <li>Medio hipertónico: sale agua de la célula.</li>
+            <li>Medio isotónico: no hay movimiento neto.</li>
+            <li><span class="yellow">La plasmólisis ocurre cuando una célula vegetal pierde agua en un medio hipertónico y la membrana se separa de la pared celular.</span></li>
+            <li><span class="greenflag">En glóbulos rojos en medio hipotónico, el agua entra y pueden hincharse y romperse.</span></li>
+          </ul>
+
+          <div class="box danger">
+            <strong>No confundas:</strong> <span class="redflag">pared celular</span> y <span class="redflag">membrana plasmática</span> no son lo mismo.
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section id="tema4">
+      <details>
+        <summary>4. Metabolismo, ATP, energía y enzimas</summary>
+        <div class="content">
+          <h3>Conceptos base</h3>
+          <ul>
+            <li><span class="greenflag">El metabolismo es la suma de todas las reacciones químicas de la célula.</span></li>
+            <li><span class="greenflag">El ATP es la principal molécula portadora de energía.</span></li>
+            <li>ATP = adenina + ribosa + 3 fosfatos.</li>
+            <li>ADP = adenina + ribosa + 2 fosfatos.</li>
+          </ul>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Reacción</th>
+                <th>Qué pasa</th>
+                <th>Cómo reconocerla</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Exergónica</td>
+                <td>Libera energía</td>
+                <td>Productos con menos energía que reactivos</td>
+              </tr>
+              <tr>
+                <td>Endergónica</td>
+                <td>Requiere energía</td>
+                <td>Productos con más energía que reactivos</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Enzimas</h3>
+          <ul>
+            <li><span class="yellow">Las enzimas disminuyen la energía de activación.</span></li>
+            <li>Son catalizadores biológicos.</li>
+            <li>No cambian la energía final de reactivos y productos.</li>
+            <li>Tienen sitio activo.</li>
+            <li>Su función depende de su estructura tridimensional.</li>
+          </ul>
+
+          <h3>Factores y regulación</h3>
+          <ul>
+            <li>La actividad enzimática cambia con pH, temperatura y concentración de sustrato.</li>
+            <li><span class="greenflag">Inhibición competitiva:</span> el inhibidor ocupa el sitio activo.</li>
+            <li><span class="greenflag">Inhibición alostérica o no competitiva:</span> se une a otro sitio y altera la enzima.</li>
+            <li><span class="greenflag">Inhibición por retroalimentación:</span> el producto final inhibe una enzima inicial de la ruta.</li>
+          </ul>
+
+          <div class="box danger">
+            <strong>Muy importante:</strong> <span class="redflag">la enzima no aporta energía</span>; solamente hace más fácil que la reacción inicie.
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section id="tema5">
+      <details>
+        <summary>5. Fotosíntesis y respiración celular</summary>
+        <div class="content">
+          <h3>Fotosíntesis</h3>
+          <ul>
+            <li><span class="greenflag">La fotosíntesis ocurre en cloroplastos.</span></li>
+            <li><span class="yellow">Las reacciones dependientes de la luz ocurren en las membranas de los tilacoides.</span></li>
+            <li><span class="yellow">El ciclo de Calvin ocurre en el estroma.</span></li>
+            <li>La fotólisis rompe agua y libera oxígeno.</li>
+            <li>La fase luminosa produce ATP y NADPH.</li>
+            <li>El ciclo de Calvin usa CO2, ATP y NADPH para producir G3P.</li>
+          </ul>
+
+          <h3>Rubisco, C3, C4 y CAM</h3>
+          <ul>
+            <li>Rubisco fija CO2 en el ciclo de Calvin.</li>
+            <li><span class="yellow">Si el O2 se une a rubisco puede ocurrir fotorrespiración.</span></li>
+            <li>C3: vía normal del Calvin.</li>
+            <li>C4: separa espacialmente captura de CO2 y Calvin.</li>
+            <li>CAM: separa temporalmente esos procesos.</li>
+          </ul>
+
+          <h3>Respiración celular</h3>
+          <ol>
+            <li>Glucólisis.</li>
+            <li>Formación de acetil-CoA.</li>
+            <li>Ciclo de Krebs.</li>
+            <li>Cadena de transporte de electrones y quimiosmosis.</li>
+          </ol>
+
+          <ul>
+            <li>Glucólisis: ocurre en el citosol, produce 2 ATP netos y 2 NADH por glucosa.</li>
+            <li>El piruvato se convierte en acetil-CoA en la matriz mitocondrial.</li>
+            <li><span class="yellow">El ciclo de Krebs ocurre en la matriz mitocondrial.</span></li>
+            <li>Por cada acetil-CoA: 1 ATP, 3 NADH, 1 FADH2 y 2 CO2.</li>
+            <li><span class="greenflag">Por glucosa, el ciclo de Krebs produce 2 ATP directos.</span></li>
+            <li><span class="yellow">El oxígeno es el aceptor final de electrones y forma agua.</span></li>
+            <li>La mayor parte del ATP se produce en la cadena de transporte de electrones.</li>
+          </ul>
+
+          <h3>Fermentación</h3>
+          <ul>
+            <li>Fermentación láctica: produce ácido láctico.</li>
+            <li>Fermentación alcohólica: produce alcohol y CO2.</li>
+            <li>Sirven para regenerar NAD+.</li>
+          </ul>
+        </div>
+      </details>
+    </section>
+
+    <section id="tema6">
+      <details open>
+        <summary>6. Reproducción celular: ciclo celular, cromatina, mitosis y meiosis</summary>
+        <div class="content">
+          <h3>Ciclo celular</h3>
+          <ul>
+            <li>Interfase: crecimiento y preparación.</li>
+            <li><span class="greenflag">Fase S = duplicación del ADN.</span></li>
+            <li>Existen puntos de control para verificar si la célula puede continuar.</li>
+          </ul>
+
+          <h3>Cromatina y cromosomas</h3>
+          <ul>
+            <li>Cromosomas homólogos: tienen los mismos genes, aunque no necesariamente los mismos alelos.</li>
+            <li>Eucromatina: menos compacta y más activa.</li>
+            <li><span class="yellow">Heterocromatina: más compacta y menos activa.</span></li>
+          </ul>
+
+          <h3>Mitosis</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Fase</th>
+                <th>Qué pasa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Profase</td>
+                <td>Los cromosomas se condensan</td>
+              </tr>
+              <tr>
+                <td>Metafase</td>
+                <td>Los cromosomas duplicados se alinean en el ecuador</td>
+              </tr>
+              <tr>
+                <td>Anafase</td>
+                <td>Se separan cromátidas hermanas</td>
+              </tr>
+              <tr>
+                <td>Telofase</td>
+                <td>Se forman núcleos hijos</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Meiosis</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Aspecto</th>
+                <th>Meiosis I</th>
+                <th>Meiosis II</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Qué se separa</td>
+                <td>Cromosomas homólogos</td>
+                <td>Cromátidas hermanas</td>
+              </tr>
+              <tr>
+                <td>Entrecruzamiento</td>
+                <td>Sí, en profase I</td>
+                <td>No</td>
+              </tr>
+              <tr>
+                <td>Resultado parcial</td>
+                <td>2 células haploides</td>
+                <td>4 células haploides</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <ul>
+            <li><span class="greenflag">La meiosis produce 4 células haploides.</span></li>
+            <li><span class="yellow">La variabilidad genética se debe al entrecruzamiento y la distribución independiente.</span></li>
+            <li><span class="greenflag">Meiosis I separa cromosomas homólogos.</span></li>
+            <li><span class="greenflag">Meiosis II separa cromátidas hermanas.</span></li>
+            <li>En animales, las células haploides producidas por meiosis se llaman gametos.</li>
+          </ul>
+
+          <h3>Cómo leer imágenes de meiosis o mitosis</h3>
+          <ul>
+            <li>Si ves cromosomas condensados sin alineación clara, suele ser profase.</li>
+            <li>Si están alineados en el centro, suele ser metafase.</li>
+            <li>Si se separan cromátidas hermanas, es anafase mitótica o anafase II.</li>
+            <li>Si se separan homólogos completos, es anafase I.</li>
+            <li>Si la figura muestra una célula haploide con cromosomas aún duplicados y alineados, probablemente corresponde a meiosis II.</li>
+          </ul>
+
+          <div class="box ok">
+            <strong>Regla práctica:</strong> si en la imagen se separan “X” completas, piensa en homólogos; si se separan las mitades de cada “X”, piensa en cromátidas hermanas.
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section id="repaso">
+      <details open>
+        <summary>Repaso final de respuestas exactas</summary>
+        <div class="content">
+          <ul>
+            <li>La unidad más pequeña de vida es la célula.</li>
+            <li>Homeostasis es mantener condiciones internas estables.</li>
+            <li>Después de hipótesis y predicción sigue el experimento o recolección de datos.</li>
+            <li>NaCl es un enlace iónico.</li>
+            <li>El agua es polar.</li>
+            <li>La mayoría de las propiedades del agua dependen de puentes de hidrógeno.</li>
+            <li>La ribosa es un monosacárido.</li>
+            <li>Los aminoácidos forman proteínas.</li>
+            <li>Los ribosomas están formados por ARN y proteínas.</li>
+            <li>La membrana está compuesta principalmente por fosfolípidos y proteínas.</li>
+            <li>La endocitosis es transporte activo.</li>
+            <li>Las enzimas disminuyen la energía de activación.</li>
+            <li>La inhibición competitiva ocurre en el sitio activo.</li>
+            <li>La exergónica libera energía; la endergónica requiere energía.</li>
+            <li>La fotosíntesis ocurre en cloroplastos.</li>
+            <li>La fase luminosa ocurre en tilacoides.</li>
+            <li>El ciclo de Calvin ocurre en el estroma.</li>
+            <li>Cuando O2 se une a rubisco puede ocurrir fotorrespiración.</li>
+            <li>El ciclo de Krebs ocurre en la matriz mitocondrial.</li>
+            <li>El oxígeno forma agua al final de la cadena respiratoria.</li>
+            <li>La fase S duplica el ADN.</li>
+            <li>La heterocromatina es más compacta y menos activa.</li>
+            <li>Mitosis: profase, metafase, anafase y telofase.</li>
+            <li>Meiosis I separa homólogos.</li>
+            <li>Meiosis II separa cromátidas hermanas.</li>
+            <li>La transcripción produce ARN.</li>
+            <li>La traducción produce proteínas.</li>
+          </ul>
+        </div>
+      </details>
+    </section>
+
+    <section id="simulacro">
+      <details open>
+        <summary>Simulacro final tipo examen</summary>
+        <div class="content">
+          <p>
+            Este simulacro combina selección única, completar, asociación y mini desarrollo, parecido al estilo del parcial.
+          </p>
+
+          <div class="score-box">
+            <div><strong>Puntaje</strong></div>
+            <div class="score-number" id="scoreValue">0 / 35</div>
+            <div class="mini" id="scoreText">Completa todo y presiona “Revisar simulacro”.</div>
+          </div>
+
+          <div class="quiz-controls">
+            <button class="btn btn-primary" onclick="gradeQuiz()">Revisar simulacro</button>
+            <button class="btn btn-secondary" onclick="resetQuiz()">Reiniciar</button>
+          </div>
+
+          <div id="mcqWrap"></div>
+
+          <div class="question" data-type="short" data-answer="experimento">
+            <div class="q-title">26. Después de plantear una hipótesis y una predicción, el paso siguiente del método científico es:</div>
+            <input class="short-input" type="text" />
+            <div class="feedback"></div>
+          </div>
+
+          <div class="question" data-type="short" data-answer="sitio activo">
+            <div class="q-title">27. El lugar de la enzima donde se une un inhibidor competitivo se llama:</div>
+            <input class="short-input" type="text" />
+            <div class="feedback"></div>
+          </div>
+
+          <div class="question" data-type="short" data-answer="arn">
+            <div class="q-title">28. El producto final de la transcripción es una molécula de:</div>
+            <input class="short-input" type="text" />
+            <div class="feedback"></div>
+          </div>
+
+          <div class="question" data-type="short" data-answer="gametos">
+            <div class="q-title">29. En animales, las células haploides producidas por meiosis se llaman:</div>
+            <input class="short-input" type="text" />
+            <div class="feedback"></div>
+          </div>
+
+          <div class="question" data-type="assoc-group" id="assoc1">
+            <div class="q-title">30. Asocia el componente con su función</div>
+            <div class="assoc-row">
+              <div>Mitocondria</div>
+              <select data-answer="atp">
+                <option value="">Selecciona</option>
+                <option value="fotosintesis">Fotosíntesis</option>
+                <option value="atp">Respiración celular / ATP</option>
+                <option value="proteinas">Síntesis de proteínas</option>
+                <option value="golgi">Empaque y modificación</option>
+              </select>
+            </div>
+            <div class="assoc-row">
+              <div>Cloroplasto</div>
+              <select data-answer="fotosintesis">
+                <option value="">Selecciona</option>
+                <option value="fotosintesis">Fotosíntesis</option>
+                <option value="atp">Respiración celular / ATP</option>
+                <option value="proteinas">Síntesis de proteínas</option>
+                <option value="golgi">Empaque y modificación</option>
+              </select>
+            </div>
+            <div class="assoc-row">
+              <div>Ribosoma</div>
+              <select data-answer="proteinas">
+                <option value="">Selecciona</option>
+                <option value="fotosintesis">Fotosíntesis</option>
+                <option value="atp">Respiración celular / ATP</option>
+                <option value="proteinas">Síntesis de proteínas</option>
+                <option value="golgi">Empaque y modificación</option>
+              </select>
+            </div>
+            <div class="assoc-row">
+              <div>Aparato de Golgi</div>
+              <select data-answer="golgi">
+                <option value="">Selecciona</option>
+                <option value="fotosintesis">Fotosíntesis</option>
+                <option value="atp">Respiración celular / ATP</option>
+                <option value="proteinas">Síntesis de proteínas</option>
+                <option value="golgi">Empaque y modificación</option>
+              </select>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="question" data-type="assoc-group" id="assoc2">
+            <div class="q-title">31. Asocia la fase con el evento correcto</div>
+            <div class="assoc-row">
+              <div>Profase</div>
+              <select data-answer="condensan">
+                <option value="">Selecciona</option>
+                <option value="alinean">Se alinean en el ecuador</option>
+                <option value="separan">Se separan cromátidas</option>
+                <option value="nucleos">Se forman núcleos hijos</option>
+                <option value="condensan">Los cromosomas se condensan</option>
+              </select>
+            </div>
+            <div class="assoc-row">
+              <div>Metafase</div>
+              <select data-answer="alinean">
+                <option value="">Selecciona</option>
+                <option value="alinean">Se alinean en el ecuador</option>
+                <option value="separan">Se separan cromátidas</option>
+                <option value="nucleos">Se forman núcleos hijos</option>
+                <option value="condensan">Los cromosomas se condensan</option>
+              </select>
+            </div>
+            <div class="assoc-row">
+              <div>Anafase</div>
+              <select data-answer="separan">
+                <option value="">Selecciona</option>
+                <option value="alinean">Se alinean en el ecuador</option>
+                <option value="separan">Se separan cromátidas</option>
+                <option value="nucleos">Se forman núcleos hijos</option>
+                <option value="condensan">Los cromosomas se condensan</option>
+              </select>
+            </div>
+            <div class="assoc-row">
+              <div>Telofase</div>
+              <select data-answer="nucleos">
+                <option value="">Selecciona</option>
+                <option value="alinean">Se alinean en el ecuador</option>
+                <option value="separan">Se separan cromátidas</option>
+                <option value="nucleos">Se forman núcleos hijos</option>
+                <option value="condensan">Los cromosomas se condensan</option>
+              </select>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="question" data-type="short" data-answer="hipertonico">
+            <div class="q-title">32. Si una célula vegetal pierde agua y su membrana se separa de la pared celular, el medio externo es:</div>
+            <input class="short-input" type="text" />
+            <div class="feedback"></div>
+          </div>
+
+          <div class="question" data-type="short" data-answer="cromatidas hermanas">
+            <div class="q-title">33. En meiosis II se separan:</div>
+            <input class="short-input" type="text" />
+            <div class="feedback"></div>
+          </div>
+
+          <div class="question" data-type="short" data-answer="cromosomas homologos">
+            <div class="q-title">34. En meiosis I se separan:</div>
+            <input class="short-input" type="text" />
+            <div class="feedback"></div>
+          </div>
+
+          <div class="question" data-type="open">
+            <div class="q-title">35. Mini desarrollo: explica por qué ocurre la plasmólisis en células vegetales.</div>
+            <textarea class="short-input" rows="4" placeholder="Escribe tu respuesta aquí..."></textarea>
+            <div class="feedback show ok">Respuesta esperada: ocurre cuando la célula vegetal está en un medio hipertónico; el agua sale por ósmosis, la vacuola se contrae y la membrana plasmática se separa de la pared celular.</div>
+          </div>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <script>
+    const mcqs = [
+      ["1. Al detectar y responder al cambio, un organismo mantiene condiciones internas estables. Esto se llama:","homeostasis",["reproducción","desarrollo","homeostasis","herencia"],2],
+      ["2. Un grupo experimental difiere del grupo control con respecto a:","variable en estudio",["sesgo","confiabilidad","variable en estudio","azar"],2],
+      ["3. El enlace donde los electrones se comparten de forma desigual es:","covalente polar",["covalente no polar","iónico","covalente polar","puente de hidrógeno"],2],
+      ["4. La ribosa es un ejemplo de:","monosacarido",["disacárido","nucleótido","monosacárido","ácido nucleico"],2],
+      ["5. Una característica importante de los lípidos es que:","tienen regiones extensas no polares",["tienen muchos grupos hidroxilo","tienen regiones extensas no polares","son polímeros de nucleótidos","siempre son solubles en agua"],1],
+      ["6. Los aminoácidos forman:","proteina",["polisacáridos","proteínas","ácidos grasos","nucleótidos"],1],
+      ["7. El tipo de enlace responsable de la mayoría de las propiedades del agua es:","puente de hidrogeno",["puente de hidrógeno","enlace peptídico","enlace fosfodiéster","enlace disulfuro"],0],
+      ["8. Cuando un inhibidor se une al sitio activo de una enzima se llama:","inhibicion competitiva",["inhibición no competitiva","inhibición competitiva","inhibición irreversible","regulación alostérica"],1],
+      ["9. Cuando la actividad enzimática es inhibida por su producto se denomina:","retroalimentacion",["desnaturalización","retroalimentación","cambio de pH","difusión"],1],
+      ["10. Si una solución tiene pH 12, otra pH 3 y otra pH 7, respectivamente son:","basica acida neutra",["ácida, neutra, básica","básica, ácida, neutra","neutra, básica, ácida","básica, neutra, ácida"],1],
+      ["11. El transporte de proteínas por vesículas ocurre de forma importante entre:","reticulo y golgi",["cloroplasto y mitocondria","retículo endoplásmico y Golgi","mitocondria y Golgi","núcleo y cloroplasto"],1],
+      ["12. Los procariotas se diferencian de los eucariotas porque:","no tienen nucleo definido",["tienen Golgi","no tienen núcleo definido","poseen cromosomas lineales","tienen organelos membranosos"],1],
+      ["13. Los ribosomas están compuestos por:","arn y proteinas",["ADN y proteínas","ARN y proteínas","ARN y carbohidratos","ADN y ARN"],1],
+      ["14. Si glóbulos rojos se ponen en agua hipotónica:","se hinchan y pueden romperse",["permanecen iguales","se hinchan y pueden romperse","se encogen","no entra agua"],1],
+      ["15. En ADN, las bases se aparean como:","at cg",["A-U y C-G","A-T y C-G","A-C y T-G","A-G y C-T"],1],
+      ["16. El producto final de la transcripción es:","arn",["proteína","ARN","ADN","aminoácido"],1],
+      ["17. El codón se encuentra en:","arnm",["ARN ribosomal","ARN de transferencia","ARN mensajero","ribosoma"],2],
+      ["18. La célula eucariota duplica su ADN en:","interfase",["profase","metafase","interfase","citocinesis"],2],
+      ["19. Los cromosomas que contienen los mismos genes se llaman:","homologos",["sexuales","metafásicos","homólogos","autosomas"],2],
+      ["20. El cariotipo masculino humano tiene:","22 pares y xy",["23 pares de autosomas y XX","22 pares de autosomas y XY","23 pares de autosomas y XY","22 pares de autosomas y XX"],1],
+      ["21. La membrana plasmática está compuesta principalmente por:","fosfolipidos y proteinas",["ADN y ARN","fosfolípidos y proteínas","agua y sales","carbohidratos y ADN"],1],
+      ["22. La fase luminosa de la fotosíntesis ocurre en:","tilacoides",["estroma","tilacoides","núcleo","matriz"],1],
+      ["23. El ciclo de Calvin ocurre en:","estroma",["tilacoides","matriz","estroma","citoplasma"],2],
+      ["24. Cuando el O2 se une a rubisco puede ocurrir:","fotorrespiracion",["glucólisis","fotorrespiración","traducción","mitosis"],1],
+      ["25. En meiosis I se separan:","homologos",["cromátidas hermanas","cromosomas homólogos","aminoácidos","genes"],1]
+    ];
+
+    function normalize(text){
+      return text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[.,;:¿?¡!]/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function renderMCQ(){
+      const wrap = document.getElementById('mcqWrap');
+      wrap.innerHTML = '';
+      mcqs.forEach((q, i) => {
+        const div = document.createElement('div');
+        div.className = 'question';
+        div.dataset.type = 'mcq';
+        div.dataset.answer = q[3];
+        div.innerHTML = `
+          <div class="q-title">${q[0]}</div>
+          <div class="options">
+            ${q[2].map((opt,idx)=>`
+              <label><input type="radio" name="mcq${i}" value="${idx}"> ${opt}</label>
+            `).join('')}
+          </div>
+          <div class="feedback"></div>
+        `;
+        wrap.appendChild(div);
+      });
+    }
+
+    function gradeQuiz(){
+      let score = 0;
+      const total = 35;
+
+      document.querySelectorAll('.question').forEach(q=>{
+        q.classList.remove('correct','incorrect');
+        const fb = q.querySelector('.feedback');
+        if(fb && q.dataset.type !== 'open'){
+          fb.className = 'feedback';
+        }
+
+        const type = q.dataset.type;
+
+        if(type === 'mcq'){
+          const checked = q.querySelector('input[type="radio"]:checked');
+          const ans = q.dataset.answer;
+          if(checked && checked.value === ans){
+            score++;
+            q.classList.add('correct');
+            fb.classList.add('show','ok');
+            fb.textContent = 'Correcto.';
+          }else{
+            q.classList.add('incorrect');
+            fb.classList.add('show','bad');
+            fb.textContent = 'Incorrecto.';
+          }
+        }
+
+        if(type === 'short'){
+          const input = q.querySelector('input');
+          const user = normalize(input.value);
+          const ans = normalize(q.dataset.answer);
+          if(user === ans){
+            score++;
+            q.classList.add('correct');
+            fb.classList.add('show','ok');
+            fb.textContent = 'Correcto.';
+          }else{
+            q.classList.add('incorrect');
+            fb.classList.add('show','bad');
+            fb.textContent = `Incorrecto. Respuesta esperada: ${q.dataset.answer}.`;
+          }
+        }
+
+        if(type === 'assoc-group'){
+          const selects = q.querySelectorAll('select');
+          let allGood = true;
+          selects.forEach(s=>{
+            if(s.value !== s.dataset.answer){ allGood = false; }
+          });
+          if(allGood){
+            score++;
+            q.classList.add('correct');
+            fb.classList.add('show','ok');
+            fb.textContent = 'Todas las asociaciones están correctas.';
+          }else{
+            q.classList.add('incorrect');
+            fb.classList.add('show','bad');
+            fb.textContent = 'Hay asociaciones incorrectas.';
+          }
+        }
+      });
+
+      document.getElementById('scoreValue').textContent = `${score} / ${total}`;
+      const pct = (score/total)*100;
+      let msg = '';
+      if(pct === 100) msg = 'Excelente. Dominio muy alto del material.';
+      else if(pct >= 85) msg = 'Muy bien. Solo revisa fallos puntuales.';
+      else if(pct >= 70) msg = 'Buen avance, pero aún conviene repasar varios temas.';
+      else msg = 'Debes releer el resumen por secciones y repetir el simulacro.';
+      document.getElementById('scoreText').textContent = msg;
+      document.getElementById('simulacro').scrollIntoView({behavior:'smooth'});
+    }
+
+    function resetQuiz(){
+      renderMCQ();
+      document.querySelectorAll('.question[data-type="short"] input').forEach(i=>i.value='');
+      document.querySelectorAll('.question[data-type="assoc-group"] select').forEach(s=>s.value='');
+      document.querySelectorAll('.question').forEach(q=>{
+        q.classList.remove('correct','incorrect');
+        const fb = q.querySelector('.feedback');
+        if(fb && q.dataset.type !== 'open'){
+          fb.className = 'feedback';
+          fb.textContent = '';
+        }
+      });
+      document.querySelectorAll('.question[data-type="open"] .feedback').forEach(f=>{
+        f.className = 'feedback show ok';
+        f.textContent = 'Respuesta esperada: ocurre cuando la célula vegetal está en un medio hipertónico; el agua sale por ósmosis, la vacuola se contrae y la membrana plasmática se separa de la pared celular.';
+      });
+      document.getElementById('scoreValue').textContent = '0 / 35';
+      document.getElementById('scoreText').textContent = 'Completa todo y presiona “Revisar simulacro”.';
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    renderMCQ();
+  </script>
+</body>
+</html>
